@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  app:
+    image: avito-autumn-2021-intern-task
+    container_name: avito-autumn-2021-intern-task
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
